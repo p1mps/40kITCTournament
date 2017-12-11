@@ -38,8 +38,8 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li><a href="{{ route('match') }}">#</a></li>
-                            <li><a href="{{ route('rank') }}">#</a></li>
+                            <li><a href="{{ route('match') }}">Add match</a></li>
+                            <li><a href="{{ route('rank') }}">Rank</a></li>
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                                             Logout
