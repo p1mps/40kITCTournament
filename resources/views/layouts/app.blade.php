@@ -54,10 +54,13 @@
                 </div>
             </div>
         </nav>
-        @if (Route::has('welcome'))
-
-        @endif
-        @yield('content')
+        <div class="container">
+            <div class="row">
+                <div class="md-12">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
 
     </div>
 

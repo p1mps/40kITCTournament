@@ -39,6 +39,14 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="race" class="col-md-4 control-label">Race</label>
+
+                            <div class="col-md-6">
+                                <input id="race" type="race" class="form-control" name="race" value="{{ old('race') }}" required>
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
 

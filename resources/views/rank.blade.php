@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">Rank</div>
 
                 <div class="panel-body">
                <table class="table">
@@ -19,24 +19,19 @@
                  </thead>
                  <tbody>
 
+                @forelse ($users as $user)
                    <tr>
-                     <th scope="row">1</th>
-                     <td>Andrea</td>
-                     <td>Imperial guard</td>
-                     <td>100</td>
+                     <th scope="row">{{ $loop->iteration }}</th>
+                     <td>{{ $user->name }}</td>
+                     <td>{{ $user->race }}</td>
+                     <td>{{ $user->points }}</td>
                    </tr>
-                   <tr>
-                     <th scope="row">3</th>
-                     <td>Riccardo</td>
-                     <td>Chaos Daemons</td>
-                     <td>95</td>
-                   </tr>
-                   <tr>
-                     <th scope="row">2</th>
-                     <td>Oliver</td>
-                     <td>Chaos Black Legion</td>
-                     <td>90</td>
-                   </tr>
+                @empty
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>No users</td>
+                    </tr>
+                @endforelse
                  </tbody>
                </table>
                 </div>

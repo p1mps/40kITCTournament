@@ -7,52 +7,59 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Add match</div>
 
+                @if (session('success'))
+                <div class="alert alert-success">
+                  <strong>Success!</strong> A new match has been added
+                </div>
+                @endif
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('match') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="enemy" class="col-md-4 control-label">Enemy</label>
+                            <label for="Opponent" class="col-md-4 control-label">Opponent</label>
 
                             <div class="col-md-6">
-                                <!--<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>-->
-                                <select class="form-control">
-                                    <option>Player 1</option>
-                                    <option>Player 2</option>
-                                    <option>Player 3</option>
-                                    <option>Player 4</option>
+                                <select name="opponent" class="form-control">
+                                    @forelse ($users as $user)
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    @empty
+                                        <p>No users</p>
+                                    @endforelse
                                 </select>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="me mission points" class="col-md-4 control-label">Mission Points Me</label>
+                            <label for="Mission points player 1" class="col-md-4 control-label">Mission Points Player 1</label>
 
                             <div class="col-md-6">
-                                <input id="missionpoints-me" type="text" class="form-control" name="missionpoints-me" required>
+                                <input type="text" class="form-control" name="user1_points" required>
                             </div>
 
 
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="enemy mission points" class="col-md-4 control-label">Mission Points Enemy</label>
+                            <label for="Mission Points Player 2" class="col-md-4 control-label">Mission Points Player 2</label>
 
                             <div class="col-md-6">
-                                <input id="missionpoints-enemy" type="text" class="form-control" name="missionpoints-enemy" required>
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
+                                <input type="text" class="form-control" name="user2_points" required>
                             </div>
                         </div>
+
+                        <label for="Opponent" class="col-md-4 control-label">Result</label>
+                            <div class="col-md-6">
+                                <select name="result" class="form-control" required>
+                                    <option value="win">Win</option>
+                                    <option value="win">Loss</option>
+                                    <option value="win">Draw</option>
+                                </select>
+                            </div>
+                        </div>
+
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
