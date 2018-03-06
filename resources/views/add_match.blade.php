@@ -5,15 +5,15 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Add match</div>
 
+                <div class="panel-heading">Add match</div>
                 @if (session('success'))
                 <div class="alert alert-success">
                   <strong>Success!</strong> A new match has been added
                 </div>
                 @endif
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('match') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('add_match') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -28,18 +28,6 @@
                                     @endforelse
                                 </select>
                             </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="Mission points player 1" class="col-md-4 control-label">Mission Points Player 1</label>
-
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="user1_points" required>
-                            </div>
-
-
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">

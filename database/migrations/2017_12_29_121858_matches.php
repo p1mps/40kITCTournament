@@ -12,18 +12,24 @@ class Matches extends Migration {
 	 */
 	public function up() {
 
-		Schema::create('matches', function (Blueprint $table) {
-			$table->integer('user2_id')->unsigned();
-			$table->integer('user1_id')->unsigned();
-			$table->integer('user1_points')->unsigned();
-			$table->integer('user2_points')->unsigned();
-			$table->timestamps();
-		});
+		Schema::drop('matches');
+        Schema::create('matches', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('player_id')->unsigned();
+            $table->integer('opponent_id')->unsigned();
+            $table->integer('points');
+            $table->integer('player_score');
+            $table->integer('opponent_score');
+            $table->date('date');
+            $table->string('mission');
+            $table->integer('status');
+            $table->timestamps();
+        });
 
-		Schema::table('matches', function ($table) {
-			$table->foreign('user1_id')->references('id')->on('users');
-			$table->foreign('user2_id')->references('id')->on('users');
-		});
+        Schema::table('matches', function ($table) {
+            $table->foreign('opponent_id')->references('id')->on('users');
+            $table->foreign('player_id')->references('id')->on('users');
+        });
 	}
 
 	/**

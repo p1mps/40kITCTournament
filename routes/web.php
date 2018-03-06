@@ -24,14 +24,13 @@ Route::get('/rules', function () {
 	return view('rules');
 })->name('rules');
 
-Route::get('/match', function () {
-
+Route::get('/add_match', function () {
 	$loggedInid = Auth::id();
 	$users      = User::whereNotIn('id', [$loggedInid])->get();
-	return view('match', ['users' => $users]);
-})->name('match');
+	return view('add_match', ['users' => $users]);
+})->name('add_match');
 
-Route::post('/match', function (Request $request) {
+Route::post('/add_match', function (Request $request) {
 
 	$data = $request->all();
 
@@ -77,6 +76,22 @@ Route::post('/match', function (Request $request) {
 
 	return redirect('/match')->with('success', true);
 });
+
+Route::get('/match/{match}', function ($match) {
+
+	Match::find($match)->delete();
+
+	return redirect('matches');
+	
+})->name('match.delete');
+
+Route::get('/matches', function () {
+
+	$loggedInid = Auth::id();
+	$matches = Match::orderBy('updated_at', 'desc')->where('player_id', $loggedInid)->get();
+
+	return view('matches', ['matches' => $matches]);
+})->name('matches');
 
 Route::get('/rank', function () {
 

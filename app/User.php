@@ -32,4 +32,11 @@ class User extends Authenticatable {
 		return $this->belongsTo('App\Match');
 	}
 
+	public function getRaceAttribute($value) {
+		return ucwords(strtolower($value));
+	}
+
+	public function getNameAttribute($value) {
+		return ucwords(strtolower($value));
+	}
 }

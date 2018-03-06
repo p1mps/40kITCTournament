@@ -10,11 +10,13 @@ class UsersSeeder extends Seeder {
 	 */
 	public function run() {
 
+		DB::table('users')->truncate();
+		
 		DB::table('users')->insert([
-			'name'     => 'Andrea',
+			'name'     => 'AndreA',
 			'email'    => 'imparato.andrea' . '@gmail.com',
 			'password' => bcrypt('secret'),
-			'race'     => 'imperial guard',
+			'race'     => 'imperiAl Guard',
 			'points'   => 1200,
 		]);
 
@@ -33,30 +35,5 @@ class UsersSeeder extends Seeder {
 			'race'     => 'tau',
 			'points'   => 1200,
 		]);
-
-		DB::table('matches')->insert([
-			'user1_id'     => 1,
-			'user2_id'     => 2,
-			'user1_points' => 10,
-			'user2_points' => 8,
-
-		]);
-
-		DB::table('matches')->insert([
-			'user1_id'     => 1,
-			'user2_id'     => 3,
-			'user1_points' => 15,
-			'user2_points' => 8,
-
-		]);
-
-		DB::table('matches')->insert([
-			'user1_id'     => 2,
-			'user2_id'     => 3,
-			'user1_points' => 11,
-			'user2_points' => 2,
-
-		]);
-
 	}
 }
