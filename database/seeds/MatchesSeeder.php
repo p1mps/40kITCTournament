@@ -16,11 +16,13 @@ class MatchesSeeder extends Seeder
 
         DB::table('matches')->insert([
 			'player_id'      => 1,
-			'opponent_id'    => 2,
-			'points'         => 1200,
-			'player_score'   => 10,
-			'opponent_score' => 8,
+			'opponent_id'    => null,
+			'winner_id'	     => null,
+			'list_points'    => 1200,
+			'winner_score'   => 10,
+			'loser_score' 	 => 8,
 			'status'		 => 0,
+			'where'		 	 => 'Funtaniment',
 			'date' 			 => Carbon::parse('2000-01-01'),
 			'mission'        => 'Ethernal war'
 		]);
@@ -28,10 +30,11 @@ class MatchesSeeder extends Seeder
         DB::table('matches')->insert([
 			'player_id'      => 1,
 			'opponent_id'    => 2,
-			'points'         => 1200,
-			'player_score'   => 10,
-			'opponent_score' => 8,
+			'list_points'    => 1200,
+			'winner_score'   => 10,
+			'loser_score' 	 => 8,
 			'status'		 => 1,
+			'where'		 	 => 'Funtaniment',
 			'date' 			 => Carbon::parse('2000-01-01'),
 			'mission'        => 'Ethernal war'
 		]);
@@ -39,10 +42,11 @@ class MatchesSeeder extends Seeder
         DB::table('matches')->insert([
 			'player_id'      => 1,
 			'opponent_id'    => 3,
-			'points'         => 1200,
-			'player_score'   => 10,
-			'opponent_score' => 8,
+			'list_points'    => 1200,
+			'winner_score'   => 10,
+			'loser_score' 	 => 8,
 			'status'		 => 2,
+			'where'		 	 => 'Funtaniment',
 			'date' 			 => Carbon::parse('2000-01-01'),
 			'mission'        => 'Ethernal war'
 		]);

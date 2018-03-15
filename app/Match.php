@@ -9,11 +9,15 @@ class Match extends Model {
 	protected $fillable = [
 		'player_id',
 		'opponent_id',
-		'player_score',
-		'opponent_score',
+		'winner_id',
+		'winner_score',
+		'loser_score',
 		'status',
 		'date',
-		'mission'
+		'where',
+		'mission',
+		'list_points',
+
 	];
 
 	public $timestamps = true;
@@ -23,6 +27,10 @@ class Match extends Model {
 	}
 
 	public function opponent() {
+		return $this->belongsTo('App\User');
+	}
+
+	public function winner() {
 		return $this->belongsTo('App\User');
 	}
 

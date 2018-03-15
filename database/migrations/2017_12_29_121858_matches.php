@@ -12,16 +12,17 @@ class Matches extends Migration {
 	 */
 	public function up() {
 
-		Schema::drop('matches');
         Schema::create('matches', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('player_id')->unsigned();
-            $table->integer('opponent_id')->unsigned();
-            $table->integer('points');
-            $table->integer('player_score');
-            $table->integer('opponent_score');
+            $table->integer('opponent_id')->unsigned()->nullable();
+            $table->integer('winner_id')->unsigned()->nullable();
+            $table->integer('list_points')->nullable();
+            $table->integer('winner_score')->nullable();
+            $table->integer('loser_score')->nullable();
             $table->date('date');
-            $table->string('mission');
+            $table->string('mission')->nullable();
+            $table->string('where');
             $table->integer('status');
             $table->timestamps();
         });

@@ -39,8 +39,8 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li><a href="{{ route('matches') }}">Match history</a></li>
-                            <li><a href="{{ route('add_match') }}">Request a match</a></li>
+                            <li><a href="{{ route('match.view_request') }}">Request a Match</a></li>
+                            <li><a href="{{ route('matches') }}">Matches</a></li>
                             <li><a href="{{ route('rank') }}">Global Rank</a></li>
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">

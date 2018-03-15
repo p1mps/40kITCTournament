@@ -20,20 +20,11 @@ Route::get('/', function () {
 	return view('welcome');
 })->name('welcome');
 
-Route::get('/rules', function () {
-	return view('rules');
-})->name('rules');
-
-Route::get('/add_match', function () {
-	$loggedInid = Auth::id();
-	$users      = User::whereNotIn('id', [$loggedInid])->get();
-	return view('add_match', ['users' => $users]);
-})->name('add_match');
-
 Route::post('/add_match', function (Request $request) {
 
 	$data = $request->all();
 
+	dd($data);
 	$loggedUser = User::find(Auth::id());
 	$opponent   = User::find($data['opponent']);
 
@@ -75,20 +66,13 @@ Route::post('/add_match', function (Request $request) {
 	$opponent->save();
 
 	return redirect('/match')->with('success', true);
-});
+})->name('add_match.post');
 
-Route::get('/match/{match}', function ($match) {
-
-	Match::find($match)->delete();
-
-	return redirect('matches');
-	
-})->name('match.delete');
 
 Route::get('/matches', function () {
 
 	$loggedInid = Auth::id();
-	$matches = Match::orderBy('updated_at', 'desc')->where('player_id', $loggedInid)->get();
+	$matches = Match::orderBy('updated_at', 'desc')->get();
 
 	return view('matches', ['matches' => $matches]);
 })->name('matches');
@@ -101,5 +85,16 @@ Route::get('/rank', function () {
 })->name('rank');
 
 Auth::routes();
+
+Route::get('/match/request', 'MatchController@viewRequest')->name('match.view_request');
+
+Route::post('/match/request', 'MatchController@request')->name('match.request');
+
+Route::get('/match/{match}/accept', 'MatchController@accept')->name('match.accept');
+Route::get('/match/{match}/delete', 'MatchController@delete')->name('match.delete');
+
+
+Route::get('/match/{match}', 'MatchController@viewEdit')->name('match.view_edit');
+Route::post('/match/{match}', 'MatchController@editMatch')->name('match.edit');
 
 Route::get('/home', 'HomeController@index')->name('home');
