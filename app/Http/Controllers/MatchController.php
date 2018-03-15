@@ -70,9 +70,10 @@ class MatchController extends Controller
     public function editMatch(Request $request, $id)
     {
     	$match = Match::find($id);
-    	$matchUpdated = $match->update($request->all());
+    	$oldWinner = $match->winner_id;
+    	$match->update($request->all());
 
-		if ($matchUpdated) {
+		if ($request['winner_id'] !== $oldWinner) {
 			$this->updateRanking($match);
 		}
 
@@ -85,7 +86,7 @@ class MatchController extends Controller
     	$player = $match->player()->first();
     	$opponent = $match->opponent()->first();
 
-    	if ($winner == $player) {
+    	if ($winner->id == $player->id) {
     		$ratings = (new Elo(
 				$player->points, $opponent->points, Elo::WIN, Elo::LOST ));	
     	} else {
